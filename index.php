@@ -29,7 +29,8 @@ foreach (getallheaders() as $key => $value) {
 
 // get body
 $entityBody = file_get_contents('php://input');
-if ($result["your_headers"]["Content-Type"] == "application/json") {
+if (array_key_exists("Content-Type", $result["your_headers"]) &&
+    $result["your_headers"]["Content-Type"] == "application/json") {
     $result["your_body"] = json_decode($entityBody);
 } else {
     $result["your_body"] = $entityBody;
